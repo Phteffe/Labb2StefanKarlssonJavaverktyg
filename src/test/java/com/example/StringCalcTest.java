@@ -9,4 +9,13 @@ public class StringCalcTest {
     void callAddWithEmptyStringShouldReturn0() {
         assertEquals(0,StringCalc.add(""));
     }
+
+    @Test
+    void callAddWithIntegerStringShouldReturnEqualInteger() {
+        var actual = "1";
+        assertEquals(1,StringCalc.add(actual));
+    }
+
+
+
 }
