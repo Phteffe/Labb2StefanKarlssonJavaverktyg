@@ -16,6 +16,9 @@ public class StringCalcTest {
         assertEquals(1,StringCalc.add(actual));
     }
 
-
+    @Test
+    void callAddWithTwoStringNumbersShouldSplitAndReturnSum() {
+        assertEquals(2,StringCalc.add("1,1"));
+    }
 
 }
