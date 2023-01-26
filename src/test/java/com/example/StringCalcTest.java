@@ -12,8 +12,7 @@ public class StringCalcTest {
 
     @Test
     void callAddWithIntegerStringShouldReturnEqualInteger() {
-        var actual = "1";
-        assertEquals(1,StringCalc.add(actual));
+        assertEquals(1,StringCalc.add("1"));
     }
 
     @Test
