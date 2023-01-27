@@ -2,22 +2,26 @@ package com.example;
 
 public class StringCalc {
 
-    public static int add(String numbers){
+    public int add(String numbers){
         String[] stringNums = numbers.split(",");
         int sum = 0;
 
         if (numbers.isEmpty())
             return 0;
         if (numbers.length() == 1) {
-            return Integer.parseInt(numbers);
+            return stringToInt(numbers);
         }
         else {
-            for (int i = 0; i < stringNums.length; i++) {
-                sum += Integer.parseInt(stringNums[i]);
+            for (String stringNum : stringNums) {
+                sum += stringToInt(stringNum);
             }
             return sum;
         }
 
+    }
+
+    public int stringToInt(String input) {
+        return Integer.parseInt(input);
     }
 
 }
