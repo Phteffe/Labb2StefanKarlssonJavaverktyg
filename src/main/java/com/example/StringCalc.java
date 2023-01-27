@@ -6,19 +6,11 @@ public class StringCalc {
         int sum = 0;
         String[] stringNums = numbers.split(",");
 
-        if (numbers.equals(""))
+        if (numbers.isEmpty())
             return 0;
-        else if (numbers.contains(",")) {
-            for (String stringNum : stringNums) {
-                sum += Integer.parseInt(stringNum);
-            }
-        } else {
-            int number = Integer.parseInt(numbers);
-            return number;
-
-        } return sum;
-
-
+        else {
+            return Integer.parseInt(stringNums[0]) + Integer.parseInt(stringNums[1]);
+        }
 
     }
 
