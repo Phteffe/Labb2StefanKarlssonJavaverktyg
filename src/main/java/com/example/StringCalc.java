@@ -3,7 +3,7 @@ package com.example;
 public class StringCalc {
 
     public int add(String numbers){
-        String[] stringNums = numbers.split(",|\n");
+        String[] stringNums = numbers.split(",| \n");
         int sum = 0;
 
         if (numbers.isEmpty())
