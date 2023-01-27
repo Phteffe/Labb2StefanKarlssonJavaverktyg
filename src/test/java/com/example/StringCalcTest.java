@@ -23,5 +23,9 @@ public class StringCalcTest {
     void callAddWithThreeStringNumbersShouldSplitAndReturnSum() {
         assertEquals(6,StringCalc.add("1,2,3"));
     }
+    @Test
+    void callAddWithEightStringNumbersShouldSplitAndReturnSum() {
+        assertEquals(36,StringCalc.add("1,2,3,4,5,6,7,8"));
+    }
 
 }
