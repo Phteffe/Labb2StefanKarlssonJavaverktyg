@@ -58,6 +58,12 @@ public class StringCalcTest {
         assertThatThrownBy(() -> stringCalc.add(numbers)).isInstanceOf(IllegalArgumentException.class).hasMessage(expected);
     }
 
+    @ParameterizedTest
+    @CsvSource({"'1,1001', '1'", "'3,2000','3'"})
+    void numbersBiggerThanOneThousandIsIgnored(String numbers, int expected) {
+       assertThat(stringCalc.add(numbers)).isEqualTo(expected);
+
+    }
 
 
 }

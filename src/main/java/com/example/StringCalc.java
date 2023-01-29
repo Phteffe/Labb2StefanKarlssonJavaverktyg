@@ -22,12 +22,12 @@ public class StringCalc {
                             split("[,\\n" + numbers.charAt(2) + "]")).
                             mapToInt(Integer::parseInt).toArray();
             negativeNumCheck(numArray);
-            return Arrays.stream(numArray).sum();
+            return Arrays.stream(numArray).filter(num -> num <1000).sum();
 
         }
         numArray = Arrays.stream(numbers.split("[,\\n]")).mapToInt(Integer::parseInt).toArray();
         negativeNumCheck(numArray);
-        return Arrays.stream(numArray).sum();
+        return Arrays.stream(numArray).filter(num -> num <1000).sum();
 
 
     }
