@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StringCalcTest {
@@ -50,8 +51,12 @@ public class StringCalcTest {
         assertThat(stringCalc.add(numbers)).isEqualTo(expected);
     }
 
+    @ParameterizedTest
+    @CsvSource({"'1,2,-1', 'negatives not allowed: [-1]'", "'-1,-2,-3,-4,-5', 'negatives not allowed: [-1, -2, -3, -4, -5]'"})
+    void callAddMethodWithNegativeNumberShouldThrowAnException(String numbers, String expected) {
 
-
+        assertThatThrownBy(() -> stringCalc.add(numbers)).isInstanceOf(IllegalArgumentException.class).hasMessage(expected);
+    }
 
 
 
