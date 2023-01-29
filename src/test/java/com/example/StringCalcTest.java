@@ -69,5 +69,10 @@ public class StringCalcTest {
     void anyLengthDelimiterShouldReturnExpectedValue(String numbers, int expected){
         assertThat(stringCalc.add(numbers)).isEqualTo(expected);
     }
+    @ParameterizedTest
+    @CsvSource({"'//[%][&]\n1%2&3', 6", "'//[@][£]\n2@2£2',6"})
+    void multipleDelimitersShouldReturnSum(String numbers, int expected){
+        assertThat(stringCalc.add(numbers)).isEqualTo(expected);
+    }
 
 }

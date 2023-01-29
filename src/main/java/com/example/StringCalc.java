@@ -18,28 +18,32 @@ public class StringCalc {
         }
         if (numbers.startsWith("//")) {
             numArray = getNumArray(numbers);
-            return Arrays.stream(numArray).filter(num -> num <1000).sum();
+            return Arrays.stream(numArray).filter(num -> num < 1000).sum();
 
         }
         numArray = Arrays.stream(numbers.split("[,\\n]")).mapToInt(Integer::parseInt).toArray();
         negativeNumCheck(numArray);
-        return Arrays.stream(numArray).filter(num -> num <1000).sum();
+        return Arrays.stream(numArray).filter(num -> num < 1000).sum();
 
 
     }
 
     private int[] getNumArray(String numbers) {
         numbers = numbers.substring(2);
-        String[] stringArray = numbers.split("\\n",2);
+        String[] stringArray = numbers.split("\\n", 2);
         numbers = stringArray[1];
         String delimiter = stringArray[0];
-        delimiter = delimiter.replace("[","");
-        delimiter = delimiter.replace("]","");
+
+        delimiter = delimiter.replace("[", "(");
+        delimiter = delimiter.replace("]", ")");
+        delimiter = delimiter.replace(")(", ")|(");
+
+
         if (delimiter.contains("*"))
-            delimiter = delimiter.replace("*","\\*");
+            delimiter = delimiter.replace("*", "\\*");
         int[] numArray;
         numArray = Arrays.stream(numbers.split("[,\\n]|" + delimiter)).
-                        mapToInt(Integer::parseInt).toArray();
+                mapToInt(Integer::parseInt).toArray();
         negativeNumCheck(numArray);
         return numArray;
     }
@@ -47,7 +51,7 @@ public class StringCalc {
 
     private void negativeNumCheck(int[] numArray) {
         numArray = Arrays.stream(numArray).filter(num -> num < 0).toArray();
-        if (numArray.length != 0){
+        if (numArray.length != 0) {
             throw new IllegalArgumentException("negatives not allowed: " + Arrays.toString(numArray));
         }
     }
