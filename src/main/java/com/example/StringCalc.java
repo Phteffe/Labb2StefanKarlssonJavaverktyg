@@ -17,11 +17,7 @@ public class StringCalc {
             return stringToInt(numbers);
         }
         if (numbers.startsWith("//")) {
-            System.out.println(numbers);
-            numArray = Arrays.stream(numbers.substring(4).
-                            split("[,\\n" + numbers.charAt(2) + "]")).
-                            mapToInt(Integer::parseInt).toArray();
-            negativeNumCheck(numArray);
+            numArray = getNumArray(numbers);
             return Arrays.stream(numArray).filter(num -> num <1000).sum();
 
         }
@@ -31,6 +27,23 @@ public class StringCalc {
 
 
     }
+
+    private int[] getNumArray(String numbers) {
+        numbers = numbers.substring(2);
+        String[] stringArray = numbers.split("\\n",2);
+        numbers = stringArray[1];
+        String delimiter = stringArray[0];
+        delimiter = delimiter.replace("[","");
+        delimiter = delimiter.replace("]","");
+        if (delimiter.contains("*"))
+            delimiter = delimiter.replace("*","\\*");
+        int[] numArray;
+        numArray = Arrays.stream(numbers.split("[,\\n]|" + delimiter)).
+                        mapToInt(Integer::parseInt).toArray();
+        negativeNumCheck(numArray);
+        return numArray;
+    }
+
 
     private void negativeNumCheck(int[] numArray) {
         numArray = Arrays.stream(numArray).filter(num -> num < 0).toArray();

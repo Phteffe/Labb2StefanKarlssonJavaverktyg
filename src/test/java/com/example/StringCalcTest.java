@@ -64,6 +64,10 @@ public class StringCalcTest {
        assertThat(stringCalc.add(numbers)).isEqualTo(expected);
 
     }
-
+    @ParameterizedTest
+    @CsvSource({"'//[***]\n1***2***3', 6" , "'//[#####]\n1#####1#####1', 3"})
+    void anyLengthDelimiterShouldReturnExpectedValue(String numbers, int expected){
+        assertThat(stringCalc.add(numbers)).isEqualTo(expected);
+    }
 
 }
