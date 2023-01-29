@@ -2,7 +2,10 @@ package com.example;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StringCalcTest {
@@ -40,5 +43,16 @@ public class StringCalcTest {
     void callAddWithThreeStringNumbersNewLineDelimitedShouldSplitAndReturnSum() {
         assertEquals(6,stringCalc.add("1\n2,3"));
     }
+    @ParameterizedTest
+    @CsvSource({"'//;\n1;2', 3", "'//€\n1€2\n3,4€5', 15"})
+    void callAddMethodWithStringAndNewDelimiterReturnExpectedIntValue(String numbers, int expected){
+
+        assertThat(stringCalc.add(numbers)).isEqualTo(expected);
+    }
+
+
+
+
+
 
 }
